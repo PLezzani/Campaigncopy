@@ -4,11 +4,36 @@ import svgPaths from "./svg-ckotqgi0m0";
 import imgImage243 from "./7f35f89b785ac87361fbdf357ab69d17b69d912e.png";
 import LibraryContentCard from "../LibraryContentCard/LibraryContentCard";
 
+function TypewriterText({ text, delay = 0, speed = 30 }: { text: string; delay?: number; speed?: number }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setDisplayedText("");
+    setCurrentIndex(0);
+  }, [text]);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, currentIndex === 0 ? delay : speed);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text, delay, speed]);
+
+  return <>{displayedText}</>;
+}
+
 function GutsBubbleRight() {
   return (
-    <div className="bg-[#07388a] drop-shadow-[0px_0px_0.587px_rgba(0,0,0,0.24),0px_2.348px_2.348px_rgba(0,0,0,0.16),0px_-1.174px_0.587px_rgba(0,0,0,0.08)] relative rounded-bl-[28.18px] rounded-br-[28.18px] rounded-tl-[28.18px] w-full" data-name="Guts / Bubble Right">
-      <div className="content-stretch flex items-start px-[23.483px] py-[14.09px] relative size-full">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[24.626px] not-italic relative text-[18.47px] text-right text-white flex-1">{`Create a campaign to engage and reactivate players at risk of churning `}</p>
+    <div className="bg-[#07388a] drop-shadow-[0px_0px_0.587px_rgba(0,0,0,0.24),0px_2.348px_2.348px_rgba(0,0,0,0.16),0px_-1.174px_0.587px_rgba(0,0,0,0.08)] relative rounded-bl-[28.18px] rounded-br-[28.18px] rounded-tl-[28.18px] inline-flex min-w-0 max-w-full" data-name="Guts / Bubble Right">
+      <div className="content-stretch flex items-start px-[23.483px] py-[14.09px] relative max-w-full">
+        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[24.626px] not-italic relative text-[18.47px] text-right text-white break-words">
+          <TypewriterText text="Create a campaign to engage and reactivate players at risk of churning " delay={500} speed={30} />
+        </p>
       </div>
     </div>
   );
@@ -16,7 +41,7 @@ function GutsBubbleRight() {
 
 function GutsBubbleRightEmoji() {
   return (
-    <div className="content-stretch flex gap-[4.697px] items-start overflow-clip relative shrink-0 w-full ml-[20px]" data-name="Guts / Bubble Right + Emoji">
+    <div className="content-stretch flex gap-[4.697px] items-start overflow-clip relative shrink-0 ml-[20px] max-w-[calc(100%-20px)]" data-name="Guts / Bubble Right + Emoji">
       <GutsBubbleRight />
     </div>
   );
@@ -39,7 +64,9 @@ function CommentBubbleRight() {
 function GutsBubbleLeft() {
   return (
     <div className="bg-[#0ba5ec] content-stretch drop-shadow-[0px_0px_0.591px_rgba(0,0,0,0.24),0px_2.363px_2.363px_rgba(0,0,0,0.16),0px_-1.182px_0.591px_rgba(0,0,0,0.08)] flex items-start px-[23.633px] py-[14.18px] relative rounded-bl-[28.36px] rounded-br-[28.36px] rounded-tr-[28.36px] shrink-0" data-name="Guts / Bubble Left">
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[24.626px] not-italic relative text-[18.47px] text-white whitespace-nowrap">Sure, I also generated a content for it:</p>
+      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[24.626px] not-italic relative text-[18.47px] text-white whitespace-nowrap">
+        <TypewriterText text="Sure, I also generated a content for it:" delay={3200} speed={30} />
+      </p>
     </div>
   );
 }
@@ -57,7 +84,7 @@ function CommentBubbleLeft() {
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: 2.7, ease: "easeOut" }}
       className="content-stretch flex gap-[7.09px] items-start overflow-clip relative shrink-0 w-full"
       data-name="Comment Bubble / Left"
     >
@@ -253,7 +280,7 @@ function Frame1() {
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, delay: 4.5, ease: "easeOut" }}
       className="flex items-start justify-start shrink-0 w-full"
     >
       <div className="w-[450px]">
@@ -279,7 +306,7 @@ export default function AskAnything() {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimationKey((prev) => prev + 1);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
