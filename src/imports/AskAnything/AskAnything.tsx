@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import svgPaths from "./svg-ckotqgi0m0";
 import imgImage243 from "./7f35f89b785ac87361fbdf357ab69d17b69d912e.png";
+import LibraryContentCard from "../LibraryContentCard/LibraryContentCard";
 
 function GutsBubbleRight() {
   return (
@@ -255,12 +256,8 @@ function Frame1() {
       transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
       className="flex items-start justify-start shrink-0 w-full"
     >
-      <div className="bg-white relative rounded-[6.504px] w-[450px]" data-name="Library / Content-card">
-        <div className="content-stretch flex flex-col items-start justify-center overflow-clip relative rounded-[inherit] size-full">
-          <CardHeader />
-          <BlogPostCard />
-        </div>
-        <div aria-hidden="true" className="absolute border-[#d0d5dd] border-[0.813px] border-solid inset-0 pointer-events-none rounded-[6.504px]" />
+      <div className="w-[450px]">
+        <LibraryContentCard />
       </div>
     </motion.div>
   );
@@ -268,7 +265,7 @@ function Frame1() {
 
 function Content({ animationKey }: { animationKey: number }) {
   return (
-    <div key={animationKey} className="absolute content-stretch flex flex-col gap-[16px] items-stretch left-0 px-[16px] py-[32px] top-0 right-0" data-name="Content">
+    <div key={animationKey} className="absolute content-stretch flex flex-col gap-[16px] items-stretch left-0 px-[16px] pt-[24px] pb-0 top-0 right-0 bottom-0 overflow-hidden" data-name="Content">
       <CommentBubbleRight />
       <CommentBubbleLeft />
       <Frame1 />
